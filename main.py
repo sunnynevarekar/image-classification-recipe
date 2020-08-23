@@ -129,17 +129,17 @@ def main():
     in_features = model.fc.in_features
     model.fc = torch.nn.Linear(in_features, len(class_names))
 
+    #select gpu device if available
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    #move model to right device
+    model.to(device)
+
     #create loss criterion
     criterion = torch.nn.CrossEntropyLoss()
 
     #create optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=LR)
-
-    #select gpu device
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-    #move model to right device
-    model.to(device)
 
     #create recorder to record metrics during training
     recorder = TrainMetricRecorder(['accuracy', 'precision', 'recall', 'f1_score'])
