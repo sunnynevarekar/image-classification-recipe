@@ -117,11 +117,11 @@ def main():
     assert batch_labels.shape == torch.Size((BATCH_SIZE,))
 
     out = torchvision.utils.make_grid(batch_inputs)
-    viz_utils.imshow(out, mean, std, title=[class_names[x] for x in batch_labels], filename='logs/train_img.png')
+    viz_utils.imshow(out, mean, std, title=[class_names[x] for x in batch_labels])
 
     batch_inputs, batch_labels = next(iter(val_loader))
     out = torchvision.utils.make_grid(batch_inputs)
-    viz_utils.imshow(out, mean, std, title=[class_names[x] for x in batch_labels], filename='logs/val_img.png')
+    viz_utils.imshow(out, mean, std, title=[class_names[x] for x in batch_labels])
 
 
     #create model

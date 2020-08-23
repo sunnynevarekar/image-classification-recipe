@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def print_table(*arrays, header):
     #print header
@@ -30,4 +31,13 @@ def imshow(inp, mean, std, title=None, filename=None):
     plt.pause(0.001)  # pause a bit so that plots are updated
     if filename:
         plt.savefig(filename)
-        
+
+
+def plot_confusion_matrix(conf_mat, labels):        
+    plt.title('Confusion matrix')
+    sns.heatmap(conf_mat, annot=True, cmap='Blues', fmt='', xticklabels=labels, yticklabels=labels)
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.xticks(rotation=90)
+    plt.yticks(rotation=0)
+    plt.show()    
