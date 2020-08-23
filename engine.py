@@ -102,8 +102,8 @@ def get_predictions(model, dataloader, device=None):
 
         with torch.no_grad():
             logits = model(inputs)
-
-        probs, preds = torch.max(logits, 1)
+        
+        probs, preds = torch.max(torch.nn.functional.softmax(logits, 1), 1)
 
         #predictions
         predictions.extend(preds.cpu().numpy())
